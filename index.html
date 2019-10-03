@@ -44,7 +44,23 @@
 
 
 
+<script type="text/JavaScript">
 
+
+
+
+
+var FantasyArr = ["Unicorn", "Dragon", "Elf", "Dwarf"];
+
+function CreateButtons() {
+    for (var i = 0; i < FantasyArr.length ; i++) {
+        var Btn = $("<BUTTON>");
+        Btn.attr("data-character", FantasyArr[i]).text(FantasyArr[i]);
+        $(".ButtonsGoHere").append(Btn);
+    }
+}
+CreateButtons();
+</script>
 
 
 
