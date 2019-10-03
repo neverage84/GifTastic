@@ -12,3 +12,8 @@ body, html {
     background-size: cover;
     height: 100%;
 }
+
+.Char {
+    float: left;
+    padding: 10px;
+}
