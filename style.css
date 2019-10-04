@@ -7,8 +7,8 @@ body, html {
 }
 
 .bg {
-    background-image: url("Images/Fantasy.jpg");
-    background-repeat: no-repeat;
+    background: url("Images/Fantasy.jpg") no-repeat center center fixed;
+  
     background-size: cover;
     height: 100%;
 }

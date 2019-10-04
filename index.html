@@ -41,8 +41,8 @@
                         <form>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Add new Fantasy Character:</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
-                                        <button type="button" class="btn btn-primary">Submit</button>
+                                    <input type="text" class="form-control" placeholder="Fantasy Character" id="InputID" rows="1">
+                                        <button type="button" class="btn btn-primary" id="SubmitID">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -89,20 +89,33 @@ $("button").on("click", function() {
               CharacterDiv.addClass("Char");
               var p = $("<p>").text("Rating: " + results[i].rating);
               var CharacterImage = $("<img>");
-              CharacterImage.attr("src", results[i].images.fixed_height_small_still.url).attr("data-status", "still");
+              CharacterImage.addClass("CHAR");
+              CharacterImage.attr("src", results[i].images.fixed_height_small_still.url);
+              
+              $(".Char").attr("id", "still");
 
               CharacterDiv.append(p);
               CharacterDiv.append(CharacterImage);
-              console.log(CharacterDiv);
+              
               $("#GifsGoHere").prepend(CharacterDiv);
           }
       });
 
     });
 
-$(".Char").on("click", function() {
-    alert("CLICK");
-});
+$(document).on("click", ".Char", function() {
+     
+    var state = $(this).attr("id");
+    if (state === "still") {
+        console.log(this);
+        
+        $(this).attr("id", "active");
+    }
+   
+
+    
+})
+
 
 
 </script>
