@@ -62,7 +62,9 @@
 var FantasyArr = ["Unicorn", "Dragon", "Elf", "Dwarf"];
 
 function CreateButtons() {
+    $(".ButtonsGoHere").empty();
     for (var i = 0; i < FantasyArr.length ; i++) {
+        
         var Btn = $("<BUTTON>");
         Btn.attr("data-character", FantasyArr[i]).text(FantasyArr[i]);
         $(".ButtonsGoHere").append(Btn);
@@ -76,7 +78,7 @@ $("button").on("click", function() {
       $("#GifsGoHere").empty();
       var Character = $(this).attr("data-character");
       var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        Character + "&api_key=i6hYHQfL9WJsQ8mLcOXfDSt47fclG9Qh&limit=10";
+        Character + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
 
       $.ajax({
         url: queryURL,
@@ -87,15 +89,18 @@ $("button").on("click", function() {
 
           for (var i = 0; i < results.length; i++){
               var CharacterDiv = $("<div>");
-              CharacterDiv.addClass("Char");
-              var p = $("<p>").text("Rating: " + results[i].rating);
-              var CharacterImage = $("<img>");
-              CharacterImage.addClass("CHAR");
-              CharacterImage.attr("src", results[i].images.fixed_height_small_still.url);
               
+              
+              var p = $("<p>").text("Rating: " + results[i].rating);
+              
+              var CharacterImage = $("<img>");
+              CharacterImage.addClass("Char");
+              CharacterImage.attr("src", results[i].images.fixed_height_still.url);
+              CharacterImage.attr("data-animate",results[i].images.fixed_height.url);
+              CharacterImage.attr("data-still",results[i].images.fixed_height_still.url);
               $(".Char").attr("id", "still");
 
-              CharacterDiv.append(p);
+              CharacterDiv.append(p); 
               CharacterDiv.append(CharacterImage);
               
               $("#GifsGoHere").prepend(CharacterDiv);
@@ -106,16 +111,26 @@ $("button").on("click", function() {
 
 $(document).on("click", ".Char", function() {
      
-    var state = $(this).attr("id");
-    if (state === "still") {
-        console.log(this);
+    console.log(this);
+       
+    
         
-        $(this).attr("id", "active");
-    }
+        
+    
    
 
     
-})
+});
+
+$("#SubmitID").on("click", function(event) {
+event.preventDefault();
+var NewCreature = $("#InputID").val().trim();
+console.log(NewCreature);
+FantasyArr.push(NewCreature);
+CreateButtons();
+});
+
+
 
 
 
