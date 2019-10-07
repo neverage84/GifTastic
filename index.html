@@ -42,8 +42,8 @@
                         <form>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Add new Fantasy Character:</label>
-                                    <input type="text" class="form-control" placeholder="Fantasy Character" id="InputID" rows="1">
-                                        <button type="button" class="btn btn-primary" id="SubmitID">Submit</button>
+                                    <input type="text" class="form-control"  id="InputID" rows="1">
+                                        <input type="submit" class="btn btn-primary" id="SubmitID" value="Submit">
                             </div>
                         </form>
                     </div>
@@ -113,7 +113,15 @@ $(document).on("click", ".Char", function() {
      
     console.log(this);
        
-    
+    var state = $(this).attr("id");
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("id", "animate");
+    }
+    else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("id", "still");
+    }
         
         
     
@@ -122,7 +130,7 @@ $(document).on("click", ".Char", function() {
     
 });
 
-$("#SubmitID").on("click", function(event) {
+$("#SubmitID").on("click", function() {
 event.preventDefault();
 var NewCreature = $("#InputID").val().trim();
 console.log(NewCreature);
